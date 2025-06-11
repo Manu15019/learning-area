@@ -16,6 +16,7 @@
       }
     </style>
   </head>
+
   <body>
 
     <h1>My shopping list</h1>
@@ -31,7 +32,32 @@
     </ul>
 
     <script>
+      const list = document.querySelector('ul');
+      const input = document.querySelector('input');
+      const button = document.querySelector('button');
+    
+      button.addEventListener('click', function() {
+        const itemText = input.value.trim();
+        if (itemText === '') return;
+        input.value = '';
 
+        const listItem = document.createElement('li');
+        const span = document.createElement('span');
+        const deleteButton = document.createElement('button');
+
+        span.textContent = itemText;
+        deleteButton.textContent = "Delete";
+
+        listItem.appendChild(span);
+        listItem.appendChild(deleteButton);
+        list.appendChild(listItem);
+      
+        deleteButton.addEventListener('click', function() {
+          list.removeChild(listItem);
+        });
+
+        input.focus();
+      });
     </script>
   </body>
 </html>
